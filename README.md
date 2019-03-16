@@ -14,7 +14,6 @@ You can issue access tokens by going to Settings => Development and creating a n
 
 ```setting.json
 "kaisendon_vscode.Access Token": "Access_Token",
-<<<<<<< HEAD
 "kaisendon_vscode.Instance": "Instance Name"
 ```
 Then enter the following command:  
@@ -47,10 +46,6 @@ Streaming API enabled / disabled
 <img src="https://raw.githubusercontent.com/google/material-design-icons/master/image/ios/ic_brightness_7.imageset/ic_brightness_7_2x.png" align="middle">
 <img src="https://raw.githubusercontent.com/google/material-design-icons/master/image/ios/ic_brightness_2.imageset/ic_brightness_2_2x.png" align="middle">
 Dark mode enabled / disabled
-=======
-"kaisendon_vscode.Instance": "Instance Name",
-```
->>>>>>> e95085dec73d44c81c7ef8781690916be8c18754
 
 ## What you can do
 You can display the timeline.  
