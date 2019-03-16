@@ -4,7 +4,7 @@ You can display the Mastodon timeline.
 <img src="https://raw.githubusercontent.com/takusan23/Kaisendon-VSCode/master/read_me_image.gif">
 
 # Download
-<a herf="https://marketplace.visualstudio.com/items?itemName=takusan23.kaisendon-vscode">
+<a href="https://marketplace.visualstudio.com/items?itemName=takusan23.kaisendon-vscode">
 Download (Marketplace)
 </a>
 
