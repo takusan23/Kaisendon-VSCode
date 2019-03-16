@@ -1,0 +1,8 @@
+{
+    "extension.kaisendon_start": "Kaisendon Start",
+    "extension.setting.instance": "Enter the instance name of the account you are using.",
+    "extension.setting.access_token": "Please enter an access token. Go to Settings => Development, create a new app, and get an access token.",
+    "extension.setting.streaming_api": "Use the streaming API immediately after launching.",
+    "extension.setting.image_load": "Always display the image.",
+    "extension.setting.dark_mode": "Always use the dark mode."
+}
