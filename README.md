@@ -27,10 +27,10 @@ Enable the streaming API immediately after launching.
 
 `kaisendon_vscode.Load Image`
 
-Always show the image.
+Always show the image.  
 For those who do not want to use mobile data very much.
 
 `kaisendon_vscode.Dark Mode`
 
-Always enable dark mode.
+Always enable dark mode.  
 It is a dark mode that has become popular recently.
