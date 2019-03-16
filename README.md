@@ -73,3 +73,6 @@ For those who do not want to use mobile data very much.
 
 Always enable dark mode.  
 It is a dark mode that has become popular recently.
+
+### 🤔
+<img src="https://raw.githubusercontent.com/takusan23/Kaisendon-VSCode/master/thinking_tl.png">
