@@ -1,17 +1,25 @@
 {
 	"name": "kaisendon-vscode",
 	"displayName": "Kaisendon VSCode",
-	"description": "takusan_23",
-	"icon": "https://raw.githubusercontent.com/takusan23/Kaisendon-VSCode/master/read_me_image.gif",
-	"version": "1.0.0",
+	"publisher": "takusan23",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/takusan23/Kaisendon-VSCode"
+	},
+	"description": "takusan23",
+	"icon": "icon.png",
+	"version": "1.0.1",
 	"engines": {
 		"vscode": "^1.32.0"
 	},
 	"categories": [
 		"Other"
 	],
+	"keywords": [
+		"Mastodon"
+	],
 	"activationEvents": [
-		"onCommand:extension.account_check",
+		"onCommand:kaisendon_vscode.account_check",
 		"onCommand:kaisendon_vscode.kaisendon"
 	],
 	"main": "./out/extension.js",
@@ -46,8 +54,8 @@
 		},
 		"commands": [
 			{
-				"command": "extension.account_check",
-				"title": "account_check"
+				"command": "kaisendon_vscode.account_check",
+				"title": "%extension.account_check%"
 			},
 			{
 				"command": "kaisendon_vscode.kaisendon",

@@ -19,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
     console.log('Congratulations, your extension "kaisendon-vscode" is now active!');
 
     //Package JSON にもコマンド書いてね
-    let disposable = vscode.commands.registerCommand('extension.account_check', () => {
+    let disposable = vscode.commands.registerCommand('kaisendon_vscode.account_check', () => {
         //アクセストークン、インスタンス取れたか確認
         if (String(accessToken) !== 'undefined' && String(instance) !== 'undefined') {
             //読めた
@@ -48,6 +48,7 @@ export function activate(context: vscode.ExtensionContext) {
         );
         // And set its HTML content
         panel.webview.html = getWebviewContent(String(instance), String(accessToken), Boolean(setting_streaming_api), Boolean(setting_load_image), Boolean(setting_dark_mode));
+
     }));
 
 
