@@ -94,8 +94,8 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
             onclick="loadType('https://`+ instance + `/api/v1/timelines/home?limit=40&access_token=` + access_token + `','Home');"><i
                 class="material-icons">home</i></a>
         <a class="waves-effect waves-light btn" title="Notification"
-            onclick="loadType('https://`+ instance + `/api/v1/notifications?limit=40&access_token=` + access_token + `,'Notification');"><i
-                class="material-icons">notifications</i></a>
+            onclick="loadType('https://`+ instance + `/api/v1/notifications?limit=40&access_token=` + access_token + `','Notification');"><i
+            class="material-icons">notifications</i></a>
         <a class="waves-effect waves-light btn" title="Local Timeline"
             onclick="loadType('https://`+ instance + `/api/v1/timelines/public?local=true&limit=40','Local Timeline');"><i
                 class="material-icons">train</i></a>
@@ -214,10 +214,10 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
         } else {
             title_text.innerText = title_text.innerText.replace('Streaming', '');
             //ストリーミングしない
-            if (!url.match('notification')) {
-                loadTL(url);
+            if (!url.match('notifications')) {
+            loadTL(url);
             } else {
-                loadNotification(url);
+             loadNotification(url);
             }
         }
     }
@@ -226,7 +226,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
     getMyAccount('https://` + instance + `/api/v1/accounts/verify_credentials/?access_token=` + access_token + `');
 
 
-    //TL読み込み
+     //TL読み込み
     function loadTL(url, title) {
         //空にする
         var timeline_div = document.getElementById('timeline');
@@ -269,7 +269,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                         avatar = 'hidden';
                     }
 
-                    var browser = 'https://` + instance + `/@' + acct + '/' + object.id;
+                    var browser = 'https://friends.nico/@' + acct + '/' + object.id;
                     //動的にHTML追加
                     if (!bt) {
                         //通常
@@ -372,7 +372,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                             icon = "add_person";
                             break;
                     }
-                    var browser = 'https://` + instance + `/web/statuses/' + object.status.id;
+                    var browser = 'https://friends.nico/web/statuses/' + object.status.id;
                     //動的にHTML追加
                     timeline_div.innerHTML = timeline_div.innerHTML + '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle"><i class="material-icons">' + icon + '</i >' + type + '<br>' + name + '</span><p>' + status + '</p><div class="card-action"><a href="' + browser + '">Open brower</a></div></div></div></div ></div >';
                 }
@@ -434,7 +434,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                     //hidden　つけると非表示になるっぽい
                     avatar = 'hidden';
                 }
-                var browser = 'https://` + instance + `/@' + acct + '/' + id;
+                var browser = 'https://friends.nico/@' + acct + '/' + id;
 
                 //動的にHTML追加
                 if (!bt) {
@@ -497,7 +497,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                         icon = "add_person";
                         break;
                 }
-                var browser = 'https://` + instance + `/@' + payload.account.username + '/' + object.id;
+                var browser = 'https://friends.nico/@' + payload.account.username + '/' + object.id;
                 //動的にHTML追加
                 timeline_div.innerHTML = '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle"><i class="material-icons">' + icon + '</i >' + type + '<br>' + name + '</span><p>' + status + '</p><div class="card-action"><a href="' + browser + '">Open brower</a></div></div></div></div ></div >' + timeline_div.innerHTML;
                 //max_id
@@ -539,7 +539,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
             dark_theme = false;
             //ダークモードへ
             var theme_button = document.getElementById('theme_button');
-            theme_button.innerHTML = '<i class="material-icons ">brightness_7</i></a>';
+            theme_button.innerHTML = '<i class="material-icons ">brightness_5</i></a>';
             //黒基調
             body.style.color = '#000000';
             body.style.backgroundColor = '#ffffff';
@@ -551,6 +551,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
             }
         }
     }
+
 
 
 </script>

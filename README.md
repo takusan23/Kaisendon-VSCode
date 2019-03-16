@@ -21,6 +21,10 @@ Then enter the following command:
 （Japanese:`>インスタンスとアクセストークンの確認`）  
 The setting is complete when "Setting OK" is output.
 
+## Show timeline
+
+`Kaisendon Start`  
+(Japanese : `かいせんどんを起動`)
 
 ## operation
 <img src="https://raw.githubusercontent.com/google/material-design-icons/master/action/1x_web/ic_home_black_48dp.png" align="middle">
