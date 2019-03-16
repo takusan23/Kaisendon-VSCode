@@ -2,7 +2,8 @@
 	"name": "kaisendon-vscode",
 	"displayName": "Kaisendon VSCode",
 	"description": "takusan_23",
-	"version": "0.0.1",
+	"icon": "https://raw.githubusercontent.com/takusan23/Kaisendon-VSCode/master/read_me_image.gif",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.32.0"
 	},
