@@ -29,7 +29,7 @@ The setting is complete when "Setting OK" is output.
 # Toot !!!!
 `>Toot !`  
 (にほんご : `>トゥート！`)
-<img src="https://raw.githubusercontent.com/takusan23/Kaisendon-VSCode/master/img/read_me_image.gif">   
+<img src="https://raw.githubusercontent.com/takusan23/Kaisendon-VSCode/master/img/toot.gif">   
 
 ## operation
 <img src="https://raw.githubusercontent.com/google/material-design-icons/master/action/1x_web/ic_home_black_48dp.png" align="middle">
