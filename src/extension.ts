@@ -51,6 +51,25 @@ export function activate(context: vscode.ExtensionContext) {
 
     }));
 
+    //トゥート
+    context.subscriptions.push(vscode.commands.registerCommand('kaisendon_vscode.toot', () => {
+        //TerminalからcurlでPOSTすればトゥートできるぞ！
+        //テキストボックス
+        var text = "";
+        vscode.window.showInputBox({
+        }).then((value) => {
+            if (value !== undefined) {
+                text = value;
+                //新しいターミナル作成 PowerShell
+                const terminal = vscode.window.createTerminal(`Status POST`, 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe');
+                //ターミナルに文字を入れる
+                terminal.sendText("$headers = @{ 'Authorization' = 'Bearer " + accessToken + "' }");
+                terminal.sendText('$postText = @{"status"="' + text + '";"visibility"="public"} | ConvertTo-Json');
+                terminal.sendText('$postBody = [Text.Encoding]::UTF8.GetBytes($postText)');
+                terminal.sendText(' Invoke-RestMethod -Method POST -Uri "https://' + instance + '/api/v1/statuses" -Headers $headers  -Body $postBody -ContentType "application/json"');
+            }
+        });
+    }));
 
     //StatusBer追加
     myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);

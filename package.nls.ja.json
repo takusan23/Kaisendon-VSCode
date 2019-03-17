@@ -1,6 +1,7 @@
 {
     "extension.kaisendon_start": "かいせんどんを起動",
     "extension.account_check": "インスタンスとアクセストークンの確認",
+    "extension.toot": "トゥート !",
     "extension.setting.instance": "使ってるアカウントのインスタンス名を入力してください。",
     "extension.setting.access_token": "アクセストークンを入力してください。設定=>開発へ行き新しいアプリを作成することでアクセストークンが発行できます。",
     "extension.setting.streaming_api": "起動したらすぐにストリーミングAPIを利用する。",

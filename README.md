@@ -1,7 +1,7 @@
 # kaisendon-vscode README
 
 You can display the Mastodon timeline.
-<img src="https://raw.githubusercontent.com/takusan23/Kaisendon-VSCode/master/read_me_image.gif">
+<img src="https://raw.githubusercontent.com/takusan23/Kaisendon-VSCode/master/img/read_me_image.gif">
 
 # Download
 <a href="https://marketplace.visualstudio.com/items?itemName=takusan23.kaisendon-vscode">
@@ -21,10 +21,15 @@ Then enter the following command:
 （Japanese:`>インスタンスとアクセストークンの確認`）  
 The setting is complete when "Setting OK" is output.
 
-## Show timeline
+# Show timeline
 
-`Kaisendon Start`  
-(Japanese : `かいせんどんを起動`)
+`>Kaisendon Start`  
+(Japanese : `>かいせんどんを起動`)
+
+# Toot !!!!
+`>Toot !`  
+(にほんご : `>トゥート！`)
+<img src="https://raw.githubusercontent.com/takusan23/Kaisendon-VSCode/master/img/read_me_image.gif">   
 
 ## operation
 <img src="https://raw.githubusercontent.com/google/material-design-icons/master/action/1x_web/ic_home_black_48dp.png" align="middle">
@@ -51,12 +56,13 @@ Streaming API enabled / disabled
 <img src="https://raw.githubusercontent.com/google/material-design-icons/master/image/ios/ic_brightness_2.imageset/ic_brightness_2_2x.png" align="middle">
 Dark mode enabled / disabled
 
+
 ## What you can do
 You can display the timeline.  
 Supports streaming API.  
   
 ## Things impossible
-Toot, favorite, boost  
+~~Toot,~~ favorite, boost  
 (It was impossible because 422 returned)
 
 ## Configuration
@@ -75,4 +81,4 @@ Always enable dark mode.
 It is a dark mode that has become popular recently.
 
 ### 🤔
-<img src="https://raw.githubusercontent.com/takusan23/Kaisendon-VSCode/master/thinking_tl.png">
+<img src="https://raw.githubusercontent.com/takusan23/Kaisendon-VSCode/master/img/thinking_tl.png">

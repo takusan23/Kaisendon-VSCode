@@ -1,6 +1,7 @@
 {
     "extension.kaisendon_start": "Kaisendon Start",
     "extension.account_check": "Check Instance and Access Token",
+    "extension.toot": "Toot !",
     "extension.setting.instance": "Enter the instance name of the account you are using.",
     "extension.setting.access_token": "Please enter an access token. Go to Settings => Development, create a new app, and get an access token.",
     "extension.setting.streaming_api": "Use the streaming API immediately after launching.",
