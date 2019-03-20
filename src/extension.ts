@@ -571,8 +571,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
         }
     }
 
-
-
+ 
 </script>
 
 </html>`;
