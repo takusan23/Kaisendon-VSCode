@@ -49,6 +49,34 @@ export function activate(context: vscode.ExtensionContext) {
         // And set its HTML content
         panel.webview.html = getWebviewContent(String(instance), String(accessToken), Boolean(setting_streaming_api), Boolean(setting_load_image), Boolean(setting_dark_mode));
 
+        // Fav/BT　対応
+        // Handle messages from the webview
+        panel.webview.onDidReceiveMessage(
+            message => {
+                vscode.window.showInformationMessage(message.command + ' : ' + message.text);
+                //POST
+                //require
+                var request = require('request');
+                var headers = {
+                    'Content-Type': 'application/json, text/plain, */*',
+                    'Authorization': 'Bearer ' + accessToken
+                };
+                var options = {
+                    url: "https://" + instance + "/api/v1/" + message.text + "/" + message.command,
+                    method: 'POST',
+                    headers: headers,
+                    json: true
+                };
+                //リクエスト送信
+                request(options, function (error: any, response: any, body: any) {
+                    //コールバックで色々な処理
+                    console.log(response);
+                });
+            },
+            undefined,
+            context.subscriptions
+        );
+
     }));
 
     //トゥート
@@ -60,13 +88,26 @@ export function activate(context: vscode.ExtensionContext) {
         }).then((value) => {
             if (value !== undefined) {
                 text = value;
-                //新しいターミナル作成 PowerShell
-                const terminal = vscode.window.createTerminal(`Status POST`, 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe');
-                //ターミナルに文字を入れる
-                terminal.sendText("$headers = @{ 'Authorization' = 'Bearer " + accessToken + "' }");
-                terminal.sendText('$postText = @{"status"="' + text + '";"visibility"="public"} | ConvertTo-Json');
-                terminal.sendText('$postBody = [Text.Encoding]::UTF8.GetBytes($postText)');
-                terminal.sendText(' Invoke-RestMethod -Method POST -Uri "https://' + instance + '/api/v1/statuses" -Headers $headers  -Body $postBody -ContentType "application/json"');
+                //POST
+                //require
+                var request = require('request');
+
+                var headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + accessToken
+                };
+                var options = {
+                    url: 'https://' + instance + '/api/v1/statuses',
+                    method: 'POST',
+                    headers: headers,
+                    json: true,
+                    form: { "status": text }
+                };
+                //リクエスト送信
+                request(options, function (error: any, response: any, body: any) {
+                    //コールバックで色々な処理
+                    vscode.window.showInformationMessage(response);
+                });
             }
         });
     }));
@@ -271,7 +312,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                     //Status
                     var status = object.content;
                     //ID
-                    var id = String(object.id);
+                    var id = object.id;
                     //Display Name
                     var display_name = object.account.display_name;
                     //Acct
@@ -287,12 +328,11 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                         //hidden　つけると非表示になるっぽい
                         avatar = 'hidden';
                     }
-
                     var browser = 'https://friends.nico/@' + acct + '/' + object.id;
                     //動的にHTML追加
                     if (!bt) {
                         //通常
-                        timeline_div.innerHTML = timeline_div.innerHTML + '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle">' + name + '</span><p>' + status + '</p></div><div class="card-action"><a href="' + browser + '">Open brower</a></div></div></div ></div >';
+                        timeline_div.innerHTML = timeline_div.innerHTML + '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle">' + name + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat"><i onclick="toot_favourite('+id+');" class="material-icons">star_border</i></a><a class="waves-effect btn-flat"><i onclick="toot_reblog('+id+');" class="material-icons">repeat</i></a><a href="' + browser + '" class="waves-effect btn-flat"><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >';
                     } else {
                         //BTしたアカウント表示
                         object = array[i];
@@ -302,7 +342,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                         var acct = object.account.acct;
                         //名前
                         var btname = display_name + '@' + acct;
-                        timeline_div.innerHTML = timeline_div.innerHTML + '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><img ' + avatar + ' width="50" height="50" align="middle"><span class="card-title"><i class="material-icons">repeat</i>' + name + '<br> Boosted ' + btname + '</span><p>' + status + '</p></div><div class="card-action"><a href="' + browser + '">Open brower</a></div></div></div ></div >';
+                        timeline_div.innerHTML = timeline_div.innerHTML + '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><img ' + avatar + ' width="50" height="50" align="middle"><span class="card-title"><i class="material-icons">repeat</i>' + name + '<br> Boosted ' + btname + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat"><i onclick="toot_favourite('+id+');" class="material-icons">star_border</i></a><a class="waves-effect btn-flat"><i onclick="toot_reblog('+id+');" class="material-icons">repeat</i></a><a href="' + browser + '" class="waves-effect btn-flat"><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >';
                     }
                 }
             } else {
@@ -458,7 +498,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                 //動的にHTML追加
                 if (!bt) {
                     //通常
-                    timeline_div.innerHTML = '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle">' + name + '</span><p>' + status + '</p></div><div class="card-action"><a href="' + browser + '">Open brower</a></div></div></div ></div >' + timeline_div.innerHTML;
+                    timeline_div.innerHTML = '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle">' + name + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat"><i onclick="toot_favourite('+id+');" class="material-icons">star_border</i></a><a class="waves-effect btn-flat"><i onclick="toot_reblog('+id+');" class="material-icons">repeat</i></a><a href="' + browser + '" class="waves-effect btn-flat"><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >' + timeline_div.innerHTML;
                 } else {
                     //BTしたアカウント表示
                     payload = JSON.parse(object.payload);
@@ -468,7 +508,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                     var acct = payload.account.acct;
                     //名前
                     var btname = display_name + '@' + acct;
-                    timeline_div.innerHTML = '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><img ' + avatar + ' width="50" height="50" align="middle"><span class="card-title"><i class="material-icons">repeat</i>' + name + '<br> Boosted ' + btname + '</span><p>' + status + '</p></div><div class="card-action"><a href="' + browser + '">Open brower</a></div></div></div ></div >' + timeline_div.innerHTML;
+                    timeline_div.innerHTML = '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><img ' + avatar + ' width="50" height="50" align="middle"><span class="card-title"><i class="material-icons">repeat</i>' + name + '<br> Boosted ' + btname + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat"><i onclick="toot_favourite('+id+');" class="material-icons">star_border</i></a><a class="waves-effect btn-flat"><i onclick="toot_reblog('+id+');" class="material-icons">repeat</i></a><a href="' + browser + '" class="waves-effect btn-flat"><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >' + timeline_div.innerHTML;
                 }
                 //max_id
                 //追加読み込み
@@ -571,6 +611,23 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
         }
     }
 
+    const vscode = acquireVsCodeApi();
+
+    //Fav
+    function toot_favourite(id){
+    vscode.postMessage({
+            command: 'favourite',
+            text: id
+        });
+    }
+
+    //BT
+    function toot_reblog(id){
+    vscode.postMessage({
+            command: 'reblog',
+            text: id
+        });
+    }
  
 </script>
 

@@ -83,6 +83,7 @@
 		"@types/mocha": "^2.2.42"
 	},
 	"dependencies": {
+		"request": "^2.88.0",
 		"whatwg-fetch": "^3.0.0"
 	}
 }
