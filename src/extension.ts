@@ -67,11 +67,11 @@ export function activate(context: vscode.ExtensionContext) {
                     headers: headers,
                     json: true
                 };
-                //リクエスト送信
-                request(options, function (error: any, response: any, body: any) {
-                    //コールバックで色々な処理
-                    console.log(response);
-                });
+                // //リクエスト送信
+                // request(options, function (error: any, response: any, body: any) {
+                //     //コールバックで色々な処理
+                //     console.log(response);
+                // });
             },
             undefined,
             context.subscriptions
@@ -310,7 +310,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                         bt = true;
                     }
                     //Status
-                    var status = object.content;
+                    var status = object.content + "<br>" + object.id;
                     //ID
                     var id = object.id;
                     //Display Name
@@ -332,7 +332,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                     //動的にHTML追加
                     if (!bt) {
                         //通常
-                        timeline_div.innerHTML = timeline_div.innerHTML + '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle">' + name + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat"><i onclick="toot_favourite('+id+');" class="material-icons">star_border</i></a><a class="waves-effect btn-flat"><i onclick="toot_reblog('+id+');" class="material-icons">repeat</i></a><a href="' + browser + '" class="waves-effect btn-flat"><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >';
+                        timeline_div.innerHTML = timeline_div.innerHTML + '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle">' + name + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat" href="' + browser + '" ><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >';
                     } else {
                         //BTしたアカウント表示
                         object = array[i];
@@ -342,7 +342,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                         var acct = object.account.acct;
                         //名前
                         var btname = display_name + '@' + acct;
-                        timeline_div.innerHTML = timeline_div.innerHTML + '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><img ' + avatar + ' width="50" height="50" align="middle"><span class="card-title"><i class="material-icons">repeat</i>' + name + '<br> Boosted ' + btname + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat"><i onclick="toot_favourite('+id+');" class="material-icons">star_border</i></a><a class="waves-effect btn-flat"><i onclick="toot_reblog('+id+');" class="material-icons">repeat</i></a><a href="' + browser + '" class="waves-effect btn-flat"><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >';
+                        timeline_div.innerHTML = timeline_div.innerHTML + '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><img ' + avatar + ' width="50" height="50" align="middle"><span class="card-title"><i class="material-icons">repeat</i>' + name + '<br> Boosted ' + btname + '</span><p>' + status + '</p></div><div class=""><div class=""><a class="waves-effect btn-flat" href="' + browser + '" ><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >';
                     }
                 }
             } else {
@@ -498,7 +498,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                 //動的にHTML追加
                 if (!bt) {
                     //通常
-                    timeline_div.innerHTML = '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle">' + name + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat"><i onclick="toot_favourite('+id+');" class="material-icons">star_border</i></a><a class="waves-effect btn-flat"><i onclick="toot_reblog('+id+');" class="material-icons">repeat</i></a><a href="' + browser + '" class="waves-effect btn-flat"><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >' + timeline_div.innerHTML;
+                    timeline_div.innerHTML = '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle">' + name + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat" href="' + browser + '" ><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >' + timeline_div.innerHTML;
                 } else {
                     //BTしたアカウント表示
                     payload = JSON.parse(object.payload);
@@ -508,7 +508,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                     var acct = payload.account.acct;
                     //名前
                     var btname = display_name + '@' + acct;
-                    timeline_div.innerHTML = '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><img ' + avatar + ' width="50" height="50" align="middle"><span class="card-title"><i class="material-icons">repeat</i>' + name + '<br> Boosted ' + btname + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat"><i onclick="toot_favourite('+id+');" class="material-icons">star_border</i></a><a class="waves-effect btn-flat"><i onclick="toot_reblog('+id+');" class="material-icons">repeat</i></a><a href="' + browser + '" class="waves-effect btn-flat"><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >' + timeline_div.innerHTML;
+                    timeline_div.innerHTML = '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><img ' + avatar + ' width="50" height="50" align="middle"><span class="card-title"><i class="material-icons">repeat</i>' + name + '<br> Boosted ' + btname + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat" href="' + browser + '" ><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >' + timeline_div.innerHTML;
                 }
                 //max_id
                 //追加読み込み
