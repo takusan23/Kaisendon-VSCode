@@ -1,9 +1,6 @@
 # Change Log
 
-All notable changes to the "kaisendon-vscode" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+- 2020-05-31
+    - Adjust the design (padding, etc.)
+    - Fixed a misspelling in OpenBrowser.
+    - Fixed an incorrect instance when opening it in a browser.
