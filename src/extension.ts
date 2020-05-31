@@ -310,7 +310,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                         bt = true;
                     }
                     //Status
-                    var status = object.content + "<br>" + object.id;
+                    var status = object.content;
                     //ID
                     var id = object.id;
                     //Display Name
@@ -328,11 +328,11 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                         //hidden　つけると非表示になるっぽい
                         avatar = 'hidden';
                     }
-                    var browser = 'https://friends.nico/@' + acct + '/' + object.id;
+                    var browser = 'https://`+ instance + `/@' + acct + '/' + object.id;
                     //動的にHTML追加
                     if (!bt) {
                         //通常
-                        timeline_div.innerHTML = timeline_div.innerHTML + '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle">' + name + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat" href="' + browser + '" ><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >';
+                        timeline_div.innerHTML = timeline_div.innerHTML + '<div class=""><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div style="padding:10px"><h5><img ' + avatar + ' width="40" height="40" align="middle">' + name + '</h5><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat" href="' + browser + '" ><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >';
                     } else {
                         //BTしたアカウント表示
                         object = array[i];
@@ -342,7 +342,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                         var acct = object.account.acct;
                         //名前
                         var btname = display_name + '@' + acct;
-                        timeline_div.innerHTML = timeline_div.innerHTML + '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><img ' + avatar + ' width="50" height="50" align="middle"><span class="card-title"><i class="material-icons">repeat</i>' + name + '<br> Boosted ' + btname + '</span><p>' + status + '</p></div><div class=""><div class=""><a class="waves-effect btn-flat" href="' + browser + '" ><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >';
+                        timeline_div.innerHTML = timeline_div.innerHTML + '<div class=""><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div style="padding:10px"><img ' + avatar + ' width="40" height="40" align="middle"><h5><i class="material-icons">repeat</i>' + name + '<br> Boosted ' + btname + '</h5><p>' + status + '</p></div><div class=""><div class=""><a class="waves-effect btn-flat" href="' + browser + '" ><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >';
                     }
                 }
             } else {
@@ -431,9 +431,9 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                             icon = "add_person";
                             break;
                     }
-                    var browser = 'https://friends.nico/web/statuses/' + object.status.id;
+                    var browser = 'https://`+ instance + `/web/statuses/' + object.status.id;
                     //動的にHTML追加
-                    timeline_div.innerHTML = timeline_div.innerHTML + '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle"><i class="material-icons">' + icon + '</i >' + type + '<br>' + name + '</span><p>' + status + '</p><div class="card-action"><a href="' + browser + '">Open brower</a></div></div></div></div ></div >';
+                    timeline_div.innerHTML = timeline_div.innerHTML + '<div class=""><div class="col s12"><div class="card panel ' + theme_color + ' darken-4" style="padding:10px"><h5><img ' + avatar + ' width="40" height="40" align="middle"><i class="material-icons">' + icon + '</i >' + type + '<br>' + name + '</h5><p>' + status + '</p><div class="card-action"><a href="' + browser + '">Open browser</a></div></div></div></div ></div >';
                 }
             } else {
                 alert("インスタンス名、アクセストークンを確認してみてね");
@@ -493,12 +493,12 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                     //hidden　つけると非表示になるっぽい
                     avatar = 'hidden';
                 }
-                var browser = 'https://friends.nico/@' + acct + '/' + id;
+                var browser = 'https://`+ instance + `/@' + acct + '/' + id;
 
                 //動的にHTML追加
                 if (!bt) {
                     //通常
-                    timeline_div.innerHTML = '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle">' + name + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat" href="' + browser + '" ><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >' + timeline_div.innerHTML;
+                    timeline_div.innerHTML = '<div class=""><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div style="padding:10px"><h5><img ' + avatar + ' width="40" height="40" align="middle">' + name + '</h5><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat" href="' + browser + '" ><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >' + timeline_div.innerHTML;
                 } else {
                     //BTしたアカウント表示
                     payload = JSON.parse(object.payload);
@@ -508,7 +508,7 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                     var acct = payload.account.acct;
                     //名前
                     var btname = display_name + '@' + acct;
-                    timeline_div.innerHTML = '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div class="card-content"><img ' + avatar + ' width="50" height="50" align="middle"><span class="card-title"><i class="material-icons">repeat</i>' + name + '<br> Boosted ' + btname + '</span><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat" href="' + browser + '" ><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >' + timeline_div.innerHTML;
+                    timeline_div.innerHTML = '<div class=""><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><div style="padding:10px"><img ' + avatar + ' width="40" height="40" align="middle"><h5><i class="material-icons">repeat</i>' + name + '<br> Boosted ' + btname + '</h5><p>' + status + '</p></div><div class=""><a class="waves-effect btn-flat" href="' + browser + '" ><i class="material-icons" >open_in_browser</i></a></div></div></div ></div >' + timeline_div.innerHTML;
                 }
                 //max_id
                 //追加読み込み
@@ -556,9 +556,9 @@ function getWebviewContent(instance: String, access_token: String, streming_mode
                         icon = "add_person";
                         break;
                 }
-                var browser = 'https://friends.nico/@' + payload.account.username + '/' + object.id;
+                var browser = 'https://`+ instance + `/@' + payload.account.username + '/' + object.id;
                 //動的にHTML追加
-                timeline_div.innerHTML = '<div class="row"><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><span class="card-title"><img ' + avatar + ' width="50" height="50" align="middle"><i class="material-icons">' + icon + '</i >' + type + '<br>' + name + '</span><p>' + status + '</p><div class="card-action"><a href="' + browser + '">Open brower</a></div></div></div></div ></div >' + timeline_div.innerHTML;
+                timeline_div.innerHTML = '<div class=""><div class="col s12 "><div class="card panel ' + theme_color + ' darken-4"><h5><img ' + avatar + ' width="40" height="40" align="middle"><i class="material-icons">' + icon + '</i >' + type + '<br>' + name + '</h5><p>' + status + '</p><div class="card-action"><a href="' + browser + '">Open brower</a></div></div></div></div ></div >' + timeline_div.innerHTML;
                 //max_id
                 //追加読み込み
                 if (add_load == false) {
